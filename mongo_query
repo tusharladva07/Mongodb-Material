@@ -1,0 +1,26 @@
+
+
+
+1-use Stocks
+2-db.createCollection("inventory")
+3-db.inventory.insertMany([
+{ item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+{ item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+{ item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+{ item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+{ item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+]);
+
+4-db.inventory.find()
+5-db.inventory.find({status:"D"})
+6- db.inventory.find({$or:[{status:"D"},{status:"A"}]})
+7-db.inventory.find({$and:[{status:"A"},{qty:{$lt:30}}]})
+8-db.inventory.find({$or:[{status:{$eq:"A"}},{qty:{$lt:30}}]})
+9-db.inventory.update({item:"notebook"},{$set:{qty:25}})
+10- db.inventory.updateMany({status:"D"},{$set:{status:"B"}})
+11-db.inventory.update({item:"pen"},{$set:{qty:26}},{upsert:true})
+-db.inventory.update({item:"planner"},{$set:{qty:200}},{upsert:true})
+12-db.inventory.deleteOne({qty:100})
+13- db.inventory.deleteMany({},{})
+14-db.inventory.renameCollection("Student")
+15-db.dropDatabase()
